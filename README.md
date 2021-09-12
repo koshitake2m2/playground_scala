@@ -1,15 +1,17 @@
 ## playground scala
 
 ### purpose
+
 - To learn scala and library
-  - scala2
-    - cats
-    - circe
-    - doobie
-    - http4s
-  - scala3
+    - scala2
+        - cats
+        - circe
+        - doobie
+        - http4s
+    - scala3
 
 ### modules
+
 - scala2
 - scala3
 

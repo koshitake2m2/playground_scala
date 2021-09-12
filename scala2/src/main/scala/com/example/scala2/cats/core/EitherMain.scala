@@ -1,7 +1,5 @@
 package com.example.scala2.cats.core
 
-import cats._
-import cats.data._
 import cats.implicits._
 
 object EitherMain extends App {

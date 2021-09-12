@@ -1,4 +1,6 @@
 val scala2Version = "2.13.6"
+// NOTE: scala3のバージョンをあげるとscala3がビルド通らなくなるのでRC3をつけたままにしている.
+// NOTE: scala3はscalafmtが通らない. もしかしたらscala2とscala3は完全にプロジェクトを分けた方がいいかもしれない.
 val scala3Version = "3.0.0-RC3"
 
 ThisBuild / scalafmtOnCompile := true
@@ -7,8 +9,7 @@ lazy val root = project
   .in(file("."))
   .settings(
     name := "playground_scala",
-    version := "0.1.0",
-    scalaVersion := scala3Version
+    version := "0.1.0"
   )
   .aggregate(scala3, scala2)
 

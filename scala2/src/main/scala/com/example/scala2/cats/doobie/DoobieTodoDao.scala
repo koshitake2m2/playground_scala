@@ -1,16 +1,11 @@
 package com.example.scala2.cats.doobie
 
-import cats.data.NonEmptyList
 import cats.effect.Bracket
 import cats.implicits._
-import doobie.Fragment
-import doobie.implicits._
-import doobie.util.fragments.{in, whereAndOpt}
-import doobie.util.{Get, Read}
-import doobie.util.transactor.Transactor
 import com.example.scala2.cats.doobie.dto._
-import doobie.util.log.LogHandler
-import org.slf4j.LoggerFactory
+import doobie.implicits._
+import doobie.util.transactor.Transactor
+import doobie.util.{Get, Read}
 
 class DoobieTodoDao[F[_]](transactor: Transactor[F])(implicit
     bracket: Bracket[F, Throwable]
