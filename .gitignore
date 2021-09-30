@@ -11,3 +11,6 @@ target
 *.iml
 
 .DS_Store
+
+.vscode
+
