@@ -37,13 +37,21 @@ object QueueApiServer extends IOApp {
     }
   } >> hello
 
+  def hello2: IO[Unit] = IO.sleep(2.seconds) >> IO {
+    Either.catchOnly[NoSuchElementException](q.dequeue()) match {
+      case Right(str) => println(s"dequeue2: $str")
+      case Left(_) => println(s"queue2 is empty.")
+    }
+  } >> hello2
+
   def run(args: List[String]): IO[ExitCode] =
     BlazeServerBuilder[IO](global)
       .bindHttp(port, host)
       .withHttpApp(httpRoutes.orNotFound)
       .resource
       .use { _ =>
-        hello // *> IO.never
+//        hello
+        (hello, hello2).parTupled // *> IO.never
       }
       .as(ExitCode.Success)
 }
