@@ -18,7 +18,7 @@ lazy val scala2 = project
   .settings(
     scalaVersion := scala2Version,
     resolvers += "Tabmo Myget Public".at("https://www.myget.org/F/tabmo-public/maven/"),
-    libraryDependencies := cats ++ log ++ scalatest ++ mysql ++ doobie ++ http4s ++ circe
+    libraryDependencies := cats ++ log ++ scalatest ++ mysql ++ doobie ++ http4s ++ circe ++ scalikejdbc
   )
 
 lazy val cats = Seq(
@@ -56,6 +56,13 @@ lazy val doobie = Seq(
   "org.tpolecat" %% "doobie-quill" % doobieVersion,
   "org.tpolecat" %% "doobie-specs2" % doobieVersion % Test,
   "org.tpolecat" %% "doobie-scalatest" % doobieVersion % Test
+)
+
+lazy val scalikejdbcVersion = "3.5.0"
+lazy val scalikejdbc = Seq(
+  "org.scalikejdbc" %% "scalikejdbc" % scalikejdbcVersion,
+  "com.h2database" % "h2" % "1.4.200",
+  "ch.qos.logback" % "logback-classic" % "1.2.3"
 )
 
 lazy val http4sVersion = "0.21.4"
