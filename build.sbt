@@ -17,18 +17,19 @@ lazy val scala2 = project
   .in(file("scala2"))
   .settings(
     scalaVersion := scala2Version,
+    resolvers += "Tabmo Myget Public".at("https://www.myget.org/F/tabmo-public/maven/"),
     libraryDependencies := cats ++ log ++ scalatest ++ mysql ++ doobie ++ http4s ++ circe
   )
 
 lazy val cats = Seq(
-  "org.typelevel" %% "cats-core" % "2.1.1",
-  "org.typelevel" %% "cats-free" % "2.1.0",
+  "org.typelevel" %% "cats-core" % "2.7.0",
+  "org.typelevel" %% "cats-free" % "2.7.0",
   "org.typelevel" %% "cats-effect" % "2.1.3"
 )
 
-lazy val slf4jVersion = "1.7.28"
-lazy val logbackVersion = "1.2.3"
-lazy val log4catsVersion = "1.0.1"
+lazy val slf4jVersion = "1.7.36"
+lazy val logbackVersion = "1.2.11"
+lazy val log4catsVersion = "1.1.1"
 lazy val log = Seq(
   "org.slf4j" % "slf4j-api" % slf4jVersion,
   "ch.qos.logback" % "logback-classic" % logbackVersion,
@@ -37,7 +38,7 @@ lazy val log = Seq(
 )
 
 lazy val scalatest = Seq(
-  "org.scalatest" %% "scalatest" % "3.1.2" % Test,
+  "org.scalatest" %% "scalatest" % "3.2.12" % Test,
   "org.mockito" %% "mockito-scala" % "1.14.4" % Test,
   "org.mockito" %% "mockito-scala-scalatest" % "1.14.4" % Test
 )
@@ -65,14 +66,17 @@ lazy val http4s = Seq(
   "org.http4s" %% "http4s-circe" % http4sVersion
 )
 
-lazy val circeVersion = "0.13.0"
+lazy val circeVersion = "0.14.2"
 lazy val circeConfigVersion = "0.8.0"
+lazy val circeValidationVersion = "0.1.1" // NOTE: 最新版を指定しないとresolveしない場合あり.
 lazy val circe = Seq(
   "io.circe" %% "circe-generic" % circeVersion,
   "io.circe" %% "circe-literal" % circeVersion,
   "io.circe" %% "circe-generic-extras" % circeVersion,
   "io.circe" %% "circe-parser" % circeVersion,
-  "io.circe" %% "circe-config" % circeConfigVersion
+  "io.circe" %% "circe-config" % circeConfigVersion,
+  "io.tabmo" %% "circe-validation-core" % circeValidationVersion,
+  "io.tabmo" %% "circe-validation-extra-rules" % circeValidationVersion
 )
 
 lazy val scala3 = project
