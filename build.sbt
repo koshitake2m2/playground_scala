@@ -1,7 +1,5 @@
 val scala2Version = "2.13.6"
-// NOTE: scala3のバージョンをあげるとscala3がビルド通らなくなるのでRC3をつけたままにしている.
-// NOTE: scala3はscalafmtが通らない. もしかしたらscala2とscala3は完全にプロジェクトを分けた方がいいかもしれない.
-val scala3Version = "3.0.0-RC3"
+val scala3Version = "3.2.2"
 
 ThisBuild / scalafmtOnCompile := true
 
