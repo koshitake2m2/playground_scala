@@ -1,0 +1,2 @@
+
+GET     /                                   com.koshitake2m2.playSample.HelloController.index

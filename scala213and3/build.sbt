@@ -1,4 +1,5 @@
-val scala2Version = "2.13.6"
+// https://docs.scala-lang.org/overviews/jdk-compatibility/overview.html
+val scala2Version = "2.13.8"
 val scala3Version = "3.2.2"
 
 ThisBuild / scalafmtOnCompile := true
@@ -9,7 +10,14 @@ lazy val root = project
     name := "playground_scala",
     version := "0.1.0"
   )
-  .aggregate(scala3, scala2)
+  .aggregate(scala3, scala2, playSample)
+
+lazy val scala3 = project
+  .in(file("scala3"))
+  .settings(
+    scalaVersion := scala3Version,
+    libraryDependencies += "com.novocode" % "junit-interface" % "0.11" % "test"
+  )
 
 lazy val scala2 = project
   .in(file("scala2"))
@@ -19,6 +27,16 @@ lazy val scala2 = project
     libraryDependencies := cats ++ log ++ scalatest ++ mysql ++ doobie ++ http4s ++ circe ++ scalikejdbc
   )
 
+lazy val playSample = project
+  .in(file("playSample"))
+  .enablePlugins(PlayScala)
+  .disablePlugins(PlayLogback)
+  .settings(
+    scalaVersion := scala2Version,
+    resolvers += "Tabmo Myget Public".at("https://www.myget.org/F/tabmo-public/maven/"),
+    libraryDependencies ++= cats ++ log ++ scalatest ++ mysql ++ play ++ scalikejdbc
+  )
+
 lazy val cats = Seq(
   "org.typelevel" %% "cats-core" % "2.7.0",
   "org.typelevel" %% "cats-free" % "2.7.0",
@@ -26,7 +44,9 @@ lazy val cats = Seq(
 )
 
 lazy val slf4jVersion = "1.7.36"
-lazy val logbackVersion = "1.2.11"
+// https://logback.qos.ch/dependencies.html
+// 1.3.x is required jdk8, 1.4.x is required jdk11
+lazy val logbackVersion = "1.3.7"
 lazy val log4catsVersion = "1.1.1"
 lazy val log = Seq(
   "org.slf4j" % "slf4j-api" % slf4jVersion,
@@ -44,6 +64,7 @@ lazy val scalatest = Seq(
 lazy val mysql = Seq(
   "mysql" % "mysql-connector-java" % "8.0.20"
 )
+// lazy val postgres = "org.postgresql" % "postgresql" % "42.5.4"
 
 lazy val doobieVersion = "0.9.0"
 lazy val doobie = Seq(
@@ -59,8 +80,8 @@ lazy val doobie = Seq(
 lazy val scalikejdbcVersion = "3.5.0"
 lazy val scalikejdbc = Seq(
   "org.scalikejdbc" %% "scalikejdbc" % scalikejdbcVersion,
-  "com.h2database" % "h2" % "1.4.200",
-  "ch.qos.logback" % "logback-classic" % "1.2.3"
+  "com.h2database" % "h2" % "2.1.214",
+  "org.scalikejdbc" %% "scalikejdbc-play-initializer" % "2.8.0-scalikejdbc-3.5"
 )
 
 lazy val http4sVersion = "0.21.4"
@@ -84,9 +105,14 @@ lazy val circe = Seq(
   "io.tabmo" %% "circe-validation-extra-rules" % circeValidationVersion
 )
 
-lazy val scala3 = project
-  .in(file("scala3"))
-  .settings(
-    scalaVersion := scala3Version,
-    libraryDependencies += "com.novocode" % "junit-interface" % "0.11" % "test"
-  )
+// https://github.com/codingwell/scala-guice
+lazy val codingwellScalaGuiceVersion = "5.1.1"
+lazy val play = Seq(
+  // https://mvnrepository.com/artifact/com.typesafe.play/play-ws
+  // "com.typesafe.play" %% "play-guice" % "2.9.0-M4",
+  // https://mvnrepository.com/artifact/com.typesafe.play/play-ahc-ws
+  // "com.typesafe.play" %% "play-ahc-ws" % "2.9.0-M4",
+  guice,
+  ws,
+  "net.codingwell" %% "scala-guice" % codingwellScalaGuiceVersion
+)
