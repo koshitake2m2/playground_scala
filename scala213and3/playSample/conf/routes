@@ -1,2 +1,3 @@
 
 GET     /                                   com.koshitake2m2.playSample.HelloController.index
+GET     /play-sample/api/download           com.koshitake2m2.playSample.FileController.download

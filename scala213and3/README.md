@@ -3,7 +3,11 @@
 ## run
 
 ```bash
+# web
 sbt "project playSample; ~run"
+
+# batch
+TODO: ???
 ```
 
 ## setup
