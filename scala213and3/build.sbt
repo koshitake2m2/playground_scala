@@ -24,7 +24,7 @@ lazy val scala2 = project
   .settings(
     scalaVersion := scala2Version,
     resolvers += "Tabmo Myget Public".at("https://www.myget.org/F/tabmo-public/maven/"),
-    libraryDependencies := cats ++ log ++ scalatest ++ mysql ++ doobie ++ http4s ++ circe ++ scalikejdbc
+    libraryDependencies := cats ++ log ++ scalatest ++ mysql ++ doobie ++ http4s ++ circe ++ scalikejdbc ++ awsSdkV2
   )
 
 lazy val playSample = project
@@ -34,7 +34,7 @@ lazy val playSample = project
   .settings(
     scalaVersion := scala2Version,
     resolvers += "Tabmo Myget Public".at("https://www.myget.org/F/tabmo-public/maven/"),
-    libraryDependencies ++= cats ++ log ++ scalatest ++ mysql ++ play ++ scalikejdbc
+    libraryDependencies ++= cats ++ log ++ scalatest ++ mysql ++ play ++ scalikejdbc ++ awsSdkV2
   )
 
 lazy val cats = Seq(
@@ -115,4 +115,10 @@ lazy val play = Seq(
   guice,
   ws,
   "net.codingwell" %% "scala-guice" % codingwellScalaGuiceVersion
+)
+
+lazy val awsSdkV2Version = "2.20.68"
+lazy val awsSdkV2 = Seq(
+  "software.amazon.awssdk" % "s3" % awsSdkV2Version,
+  "software.amazon.awssdk" % "sqs" % awsSdkV2Version
 )

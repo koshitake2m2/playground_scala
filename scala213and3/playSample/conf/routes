@@ -1,3 +1,7 @@
 
 GET     /                                   com.koshitake2m2.playSample.HelloController.index
+POST    /play-sample/api/upload             com.koshitake2m2.playSample.FileController.upload
 GET     /play-sample/api/download           com.koshitake2m2.playSample.FileController.download
+POST    /play-sample/api/upload-s3          com.koshitake2m2.playSample.S3FileController.uploadS3
+GET     /play-sample/api/download-s3        com.koshitake2m2.playSample.S3FileController.downloadS3
+GET     /play-sample/api/buckets            com.koshitake2m2.playSample.S3FileController.bucketList
