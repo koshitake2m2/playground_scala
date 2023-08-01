@@ -34,7 +34,7 @@ lazy val playSample = project
   .settings(
     scalaVersion := scala2Version,
     resolvers += "Tabmo Myget Public".at("https://www.myget.org/F/tabmo-public/maven/"),
-    libraryDependencies ++= cats ++ log ++ scalatest ++ mysql ++ play ++ scalikejdbc ++ awsSdkV2
+    libraryDependencies ++= cats ++ circe ++ log ++ scalatest ++ mysql ++ play ++ scalikejdbc ++ awsSdkV2
   )
 
 lazy val cats = Seq(
