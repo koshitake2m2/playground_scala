@@ -4,10 +4,14 @@ val scala3Version = "3.2.2"
 
 ThisBuild / scalafmtOnCompile := true
 
+val isStrictCompile = Option(System.getProperty("local.compile")) == Some("strict")
+val strictCompileOptions = if (isStrictCompile) Seq.empty else Seq("-Xfatal-warnings")
+
 lazy val root = project
   .in(file("."))
   .settings(
     name := "playground_scala",
+    scalacOptions ++= strictCompileOptions,
     version := "0.1.0"
   )
   .aggregate(scala3, scala2, playSample)
