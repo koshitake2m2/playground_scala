@@ -38,7 +38,7 @@ lazy val playSample = project
   .settings(
     scalaVersion := scala2Version,
     resolvers += "Tabmo Myget Public".at("https://www.myget.org/F/tabmo-public/maven/"),
-    libraryDependencies ++= cats ++ circe ++ log ++ scalatest ++ mysql ++ play ++ scalikejdbc ++ awsSdkV2
+    libraryDependencies ++= cats ++ circe ++ log ++ scalatest ++ mysql ++ play ++ scalikejdbc ++ awsSdkV2 ++ quartz
   )
 
 lazy val cats = Seq(
@@ -126,3 +126,6 @@ lazy val awsSdkV2 = Seq(
   "software.amazon.awssdk" % "s3" % awsSdkV2Version,
   "software.amazon.awssdk" % "sqs" % awsSdkV2Version
 )
+
+// https://mvnrepository.com/artifact/org.quartz-scheduler/quartz
+lazy val quartz = Seq("org.quartz-scheduler" % "quartz" % "2.3.2")
