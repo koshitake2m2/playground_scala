@@ -15,3 +15,9 @@ target
 
 .vscode
 
+.metals/
+.bloop/
+.ammonite/
+metals.sbt
+target
+
