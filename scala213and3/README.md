@@ -12,4 +12,8 @@ TODO: ???
 
 ## setup
 
-- jdk8 is required.
+- jdk11 is required.
+
+```bash
+jenv local 11.0
+```

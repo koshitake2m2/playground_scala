@@ -1,6 +1,6 @@
 // https://docs.scala-lang.org/overviews/jdk-compatibility/overview.html
 val scala2Version = "2.13.8"
-val scala3Version = "3.2.2"
+val scala3Version = "3.3.1"
 
 ThisBuild / scalafmtOnCompile := true
 
@@ -28,7 +28,7 @@ lazy val scala2 = project
   .settings(
     scalaVersion := scala2Version,
     resolvers += "Tabmo Myget Public".at("https://www.myget.org/F/tabmo-public/maven/"),
-    libraryDependencies := cats ++ log ++ scalatest ++ mysql ++ doobie ++ http4s ++ circe ++ scalikejdbc ++ awsSdkV2
+    libraryDependencies := cats ++ log4cats ++ scalatest ++ mysql ++ doobie ++ http4s ++ circe ++ scalikejdbc ++ awsSdkV2
   )
 
 lazy val playSample = project
@@ -38,7 +38,17 @@ lazy val playSample = project
   .settings(
     scalaVersion := scala2Version,
     resolvers += "Tabmo Myget Public".at("https://www.myget.org/F/tabmo-public/maven/"),
-    libraryDependencies ++= cats ++ circe ++ log ++ scalatest ++ mysql ++ play ++ scalikejdbc ++ awsSdkV2 ++ quartz
+    libraryDependencies ++= cats ++ circe ++ log4cats ++ scalatest ++ mysql ++ play ++ scalikejdbc ++ awsSdkV2 ++ quartz
+  )
+
+lazy val playSample3 = project
+  .in(file("playSample3"))
+  .enablePlugins(PlayScala)
+  .disablePlugins(PlayLogback)
+  .settings(
+    scalaVersion := scala3Version,
+    resolvers += "Tabmo Myget Public".at("https://www.myget.org/F/tabmo-public/maven/"),
+    libraryDependencies ++= log ++ play
   )
 
 lazy val cats = Seq(
@@ -52,11 +62,16 @@ lazy val slf4jVersion = "1.7.36"
 // 1.3.x is required jdk8, 1.4.x is required jdk11
 lazy val logbackVersion = "1.3.7"
 lazy val log4catsVersion = "1.1.1"
-lazy val log = Seq(
+lazy val log4cats = Seq(
   "org.slf4j" % "slf4j-api" % slf4jVersion,
   "ch.qos.logback" % "logback-classic" % logbackVersion,
   "io.chrisdavenport" %% "log4cats-core" % log4catsVersion,
   "io.chrisdavenport" %% "log4cats-slf4j" % log4catsVersion
+)
+
+lazy val log = Seq(
+  "org.slf4j" % "slf4j-api" % slf4jVersion,
+  "ch.qos.logback" % "logback-classic" % "1.4.7"
 )
 
 lazy val scalatest = Seq(
