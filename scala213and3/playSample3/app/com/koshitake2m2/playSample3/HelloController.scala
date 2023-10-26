@@ -12,9 +12,9 @@ class HelloController @Inject() (
 ) extends AbstractController(controllerComponents):
 
   case class HelloWorld(hello: String, year: Int)
-  implicit val helloWorldWrites: OWrites[HelloWorld] = Json.writes[HelloWorld]
 
-  def index: Action[AnyContent] = Action { _ =>
+  given OWrites[HelloWorld] = Json.writes[HelloWorld]
+
+  def index: Action[AnyContent] = Action: _ =>
     logger.debug("HelloController#index")
     Ok(Json.toJson(HelloWorld("world", 2023)))
-  }

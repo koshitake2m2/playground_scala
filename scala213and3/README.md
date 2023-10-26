@@ -5,6 +5,7 @@
 ```bash
 # web
 sbt "project playSample; ~run"
+sbt "project playSample3; ~run"
 
 # batch
 TODO: ???
