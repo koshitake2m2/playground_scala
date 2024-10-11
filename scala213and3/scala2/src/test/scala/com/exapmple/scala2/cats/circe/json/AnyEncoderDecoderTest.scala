@@ -1,12 +1,12 @@
 package com.exapmple.scala2.cats.circe.json
 
-import com.example.scala2.cats.circe.json.EncoderDecoder
+import com.example.scala2.cats.circe.json.AnyEncoderDecoder
 import io.circe.generic.auto._
 import io.circe.parser.decode
 import io.circe.syntax.EncoderOps
 import org.scalatest.wordspec.AnyWordSpec
 
-class EncoderDecoderTest extends AnyWordSpec with EncoderDecoder {
+class AnyEncoderDecoderTest extends AnyWordSpec with AnyEncoderDecoder {
   "AnyVal" should {
     import AnyValFixture._
     "encode" in {

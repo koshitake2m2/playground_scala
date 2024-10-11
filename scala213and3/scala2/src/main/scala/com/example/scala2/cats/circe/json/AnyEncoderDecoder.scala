@@ -3,7 +3,7 @@ package com.example.scala2.cats.circe.json
 import io.circe.{Decoder, Encoder}
 import shapeless.Unwrapped
 
-trait EncoderDecoder {
+trait AnyEncoderDecoder {
 
   implicit def anyValEncoder[W <: AnyVal, U](implicit
       V: Unwrapped.Aux[W, U],
